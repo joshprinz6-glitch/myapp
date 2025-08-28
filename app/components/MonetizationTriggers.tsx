@@ -1,13 +1,13 @@
 ﻿type Analytics = {
 totalSavings: number;
-// add other properties here if needed
+realPostureReadings: number;
 };
 'use client';
 import { useState, useEffect } from 'react';
 import { useCustomerData } from '../lib/userDataManager';
 interface TriggerConfig {
 id: string;
-type: 'value' | 'community' | 'achievement' | 'progress' | 'support' | 'premium' | 'urgency';
+  type: 'value' | 'community' | 'achievement' | 'progress' | 'support' | 'premium' | 'urgency';
 message: string;
 cta: string;
 duration: number;
@@ -25,14 +25,23 @@ const triggers: TriggerConfig[] = [
 {
 id: 'value_demonstration_upgrade',
 type: 'value',
-message: 💰 You've earned C:\Users\joshp\Downloads\postureguard-app\app\components{analytics?.totalSavings?.toFixed(0) || '0'} in health value! Unlock UNLIMITED earning potential with Premium!,
+message: 💰 You've earned {analytics?.totalSavings?.toFixed(0) || '0'} in health value! Unlock UNLIMITED earning potential with Premium!,
 cta: 'Upgrade & Earn More',
 duration: 12000,
 conditions: (analytics) => analytics?.totalSavings !== undefined,
 priority: 1,
 minRealActivity: 50,
 },
-// Add more triggers here if needed
+{
+id: 'achievement_milestone_upgrade',
+type: 'achievement',
+message: 🎯 MILESTONE REACHED!  sessions completed! Premium users earn 3x more rewards!,
+cta: 'Triple My Rewards',
+duration: 10000,
+conditions: (analytics) => analytics?.realPostureReadings !== undefined,
+priority: 2,
+minRealActivity: 100,
+}
 ];
 return (
 <div>
