@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { useCustomerData } from '../lib/userDataManager';
 interface TriggerConfig {
 id: string;
-  type: 'value' | 'community' | 'achievement' | 'progress' | 'support' | 'premium' | 'urgency';
+type: 'value' | 'community' | 'achievement' | 'progress' | 'support' | 'premium' | 'urgency';
 message: string;
 cta: string;
 duration: number;
