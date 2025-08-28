@@ -15,9 +15,13 @@ interface TriggerConfig {
   minRealActivity: number;
   conversionValue: number; // Expected revenue impact
 }
+type Analytics = {
+  totalSavings: number; // add other properties here if needed
+};
 
 export default function MonetizationTriggers() {
-  const { analytics, recordEngagement, triggerUpgrade } = useCustomerData();
+  const { analytics, recordEngagement, triggerUpgrade } = useCustomerData() as { analytics: Analytics | null, recordEngagement: any, triggerUpgrade: any };
+
   const [activeTrigger, setActiveTrigger] = useState<any>(null);
   const [dismissedTriggers, setDismissedTriggers] = useState<string[]>([]);
 
